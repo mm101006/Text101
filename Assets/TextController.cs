@@ -6,126 +6,124 @@ public class TextController : MonoBehaviour {
 	// requires the use of Using UnityEngine.UI
 	public Text text;
 	
-	private enum States {cell, mirror, sheets_0, lock_0, cell_mirror, sheets_1, lock_1, corridor_0};
+	private enum States {SubBase, Pack, Sleep, Continue, Stern, Zenith, Horizon};
 	private States myState;
 	
 	// Use this for initialization
 	void Start () {
-		myState = States.cell;
+		myState = States.SubBase;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		print (myState);
-		if (myState == States.cell) {
-			cell();
-		} else if (myState == States.sheets_0){
-			sheets_0();
-		} else if (myState == States.sheets_1){
-			sheets_1();
-		} else if (myState == States.lock_0) {
-			lock_0();
-		} else if (myState == States.lock_1){
-			lock_1();
-		} else if (myState == States.mirror){
-			mirror();
-		} else if (myState == States.cell_mirror){
-			cell_mirror();
-		} else if (myState == States.corridor_0) {
-			corridor_0();
+		if (myState == States.SubBase) {
+			SubBase();
+		} else if (myState == States.Sleep){
+			Sleep();
+		} else if (myState == States.Pack){
+			Pack();
+		} else if (myState == States.Continue) {
+			Continue();
+		} else if (myState == States.Stern){
+			Stern();
+		} else if (myState == States.Zenith){
+			Zenith();
+		} else if (myState == States.Horizon){
+			Horizon();
 		}
 		
 	}
 	
-	void cell() {
-		text.text = "You are in a prison cell, and you want to escape. There are " +
-					"some dirty sheets on the bed, a mirror on the wall, and the door " +
-					"is locked from the outside.\n\n" +
-					"Press S to View Sheets, M to view Mirror and L to view Lock";
+	void SubBase() {
+		text.text = "Captain: Listen up you Seamen, operation Look Wide starts today. " +
+					"So pack your bags and be ready to board at 08 hundred.\n\n " +
+					"You decide to...\n\n" +
+					"Press S to Sleep or P to Pack your Bags.";
+		
 		if (Input.GetKeyDown(KeyCode.S)){
-			myState = States.sheets_0;
-		} else if (Input.GetKeyDown(KeyCode.M)){
-			myState = States.mirror;
-		} else if (Input.GetKeyDown(KeyCode.L)){
-			myState = States.lock_0;
-		}
+			myState = States.Sleep;
+		} else if (Input.GetKeyDown(KeyCode.P)){
+			myState = States.Pack;
+		} 
 	}
 	
-	void mirror() {
-		text.text = "The dirty old mirror on the wall seems loose.\n\n" +
-					"Press T to Take the mirror, or R to Return to cell";
-					
-		if (Input.GetKeyDown(KeyCode.T)){
-			myState = States.cell_mirror;
-		} else if (Input.GetKeyDown(KeyCode.R)) {
-			myState = States.cell;
-		}
+	void Sleep() {
+		text.text = "You wake up from your cat nap, glance at your watch, " +
+					"and discover the time. You quickly rummage through your belongings " +
+					"and pack what you can. Then you make a mad dash to the docking " +
+					"station. As you arrive you see the submarine submerge into the water..." +
+					"The adventure goes on without you...\n\n" +
+					"Press P to Play again";
 		
-	}
-	
-	void cell_mirror() {
-		text.text = "You are still in your cell, and you STILL want to escape! There are " +
-					"some dirty sheets on the bed, a mark where the mirror was, " +
-					"and that pesky door is still there, and firmly locked!\n\n" +
-					"Press S to view Sheets, or L to view Lock";
-					
-		if (Input.GetKeyDown(KeyCode.S)){
-			myState = States.sheets_1;
-		} else if (Input.GetKeyDown(KeyCode.L)) {
-			myState = States.lock_1;
-		}
-	}
-	
-	void sheets_0() {
-		text.text = "You can't believe you sleep in these things. Surely it's " +
-					"time somebody changed them. The pleasures of prison life " +
-					"I guess!\n\n" +
-					"Press R to return to roaming your cell";
-		if (Input.GetKeyDown(KeyCode.R)){
-			myState = States.cell;
-		}
-	}
-	
-	void sheets_1() {
-		text.text = "Holding a mirror in your hand doesn't make the sheets look " +
-					"any better.\n\n" +
-					"Press R to Return to roaming your cell";
-					
-		if (Input.GetKeyDown(KeyCode.R)){
-			myState = States.mirror;
-		}
-	}
-		
-	void lock_0() {
-		text.text = "This is one of those button locks. You have no idea what the " +
-					"combination is. You wish you could somehow see where the dirty " +
-					"fingerprints were, maybe that would help.\n\n" +
-					"Press R to Return to roaming your cell";		
-		if (Input.GetKeyDown(KeyCode.R)){
-			myState = States.cell;
-		}
-	}
-	
-	void lock_1() {
-		text.text = "You carefully put the mirror through the bars, and turn it around " +
-					"so you can see the lock. You can just make out fingerprints around " +
-					"the buttons. You press the dirty buttons, and hear a click.\n\n" +
-					"Press O to Open, or R to Return to your cell";
-					
-		if (Input.GetKeyDown(KeyCode.O)){
-			myState = States.corridor_0;
-		} else if (Input.GetKeyDown(KeyCode.R)) {
-			myState = States.cell_mirror;
+		if (Input.GetKeyDown(KeyCode.P)) {
+			myState = States.SubBase;
 		}		
 	}
 	
-	void corridor_0() {
-		text.text = "You are in a corridor.\n\n" +
+	void Pack() {
+		text.text = "You walk to your room and start to pack your bags. " +
+					"You then glance at your watch and discover the time 07:55. " +
+					"You quickly make a mad dash to the docking station. " +
+					"As you arrive the captain blurts out: I like my seamen on time!\n\n" + 
+					"Welcome Aboard!\n\n" +
+					"Press C to Continue";
+					
+		if (Input.GetKeyDown(KeyCode.C)){
+			myState = States.Continue;
+		}
+	}
+	
+	void Continue() {
+		text.text = "Day 33: The submarine is currently drifting on the surface of the ocean " +
+					"somewhere between Pearl Harbour and the West Coast of the United States. " +
+					"Your current assignment is to sweep the perimeter and report back " +
+					"to the captain if you discover anything odd.\n\n" +
+					"You began your search by:\n\n" +
+					"Press S to look from bow to stern, or Z to look from horizon to zenith, " + 
+					"or H to look back towards the horizon.\n\n";
+					
+		if (Input.GetKeyDown(KeyCode.S)){
+			myState = States.Stern;
+		} else if (Input.GetKeyDown(KeyCode.Z)) {
+			myState = States.Zenith;
+		} else if (Input.GetKeyDown(KeyCode.H)) {
+			myState = States.Horizon;
+		}
+	}
+	
+	void Stern() {
+		text.text = "As you look towards the stern, you don't see anything but clouds and water. " +
+					"You sigh and ask yourself when will this monotony ever end.\n\n" +
+					"Press R to Return to your assignment.";
+					
+		if (Input.GetKeyDown(KeyCode.R)){
+			myState = States.Continue;
+		} 
+	}
+		
+	void Zenith() {
+		text.text = "As you look towards the stern, you don't see anything but clouds and water. " +
+					"You sigh and ask yourself when will this monotony ever end.\n\n" +
+					"Press R to Return to your assignment.";		
+		
+		if (Input.GetKeyDown(KeyCode.R)){
+			myState = States.Continue;
+		} 
+	}
+	
+	void Horizon() {
+		text.text = "As you look back towards the horizon you see a huge disk rise from beneath the ocean " +
+					"tumble lazily on its axis and then shoot up into the sky." +
+					"You quickly notify the captain, before you know it, " +
+					"the captain is scurrying to the bridge and begans snapping pictures.\n\n" +
+					"The huge disk then plunges out of the clouds, tumbles, and then creates " +
+					"a giant opening in the ocean and plunges in....\n\n" +
 					"Press P to Play again";
+					
 		if (Input.GetKeyDown(KeyCode.P)) {
-			myState = States.cell;
+			myState = States.SubBase;
 		}
-		}
-
-
+	}
+	
 }

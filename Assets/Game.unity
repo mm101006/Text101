@@ -128,7 +128,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'You are in a prison cell, and you want to escape. There are some dirty
     sheets on the bed, a mirror on the wall, and the door is locked from the outside.
