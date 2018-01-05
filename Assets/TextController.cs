@@ -35,6 +35,7 @@ public class TextController : MonoBehaviour {
 		
 	}
 	
+	#region State handler methods
 	void SubBase() {
 		text.text = "Captain: Listen up you Seamen, operation Look Wide starts today. " +
 					"So pack your bags and be ready to board at 08 hundred.\n\n " +
@@ -125,5 +126,6 @@ public class TextController : MonoBehaviour {
 			myState = States.SubBase;
 		}
 	}
+	#endregion
 	
 }
