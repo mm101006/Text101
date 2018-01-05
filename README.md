@@ -9,4 +9,4 @@ Created with Unity 4.6, programmed using C# in Monogame.
 
 ## Picture of Game
 
-[[relative/path/to/IntroImage.png?raw=true]
+![Pic](IntroImage.jpg)
